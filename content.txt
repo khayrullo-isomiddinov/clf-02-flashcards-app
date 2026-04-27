@@ -1,0 +1,217 @@
+### Some features of AWS
+**ASG** - auto scaling groups in AWS that adds or removes servers based on metrics. 
+
+**RDS Multi-AZ** - when you run a duplicate DB in another availability zone in case the primary one fails.
+
+**Amazon EC2** - a cloud service from Amazon Web Services that provides **resizable virtual servers** (called _instances_) in the cloud.
+
+**Stack** - A deployed set of AWS resources created from a template and managed as one unit. 
+
+**ECS (Elastic Container Service)** - service that runs and manages your containers, keeping the right number running and handling scaling and failures for you. ECS is a "who".
+
+**AWS Fargate** - service that runs your containers without you managing any servers or infrastructure. Fargate is a "where"
+
+**EKS (Elastic Kubernetes Service)** - service that is the same as ECS, except for being open-source and avoids vendor lock-in. EKS is a "who" as well - e.g manager. 
+
+**Elastic Beanstalk** - service that deploys and runs your application on aws automatically, handling servers, scaling and setup for you. It is a "who". I give it my app source code, and it does the rest of the job. 
+
+**AWS Lambda** - service that runs a lambda function only when triggered, without managing servers. Lightweight. 
+
+**App Runner** - same as Beanstalk, but here I have 0 control over infrastructure, while in Beanstalk I have some. 
+
+**AWS ECR (Elastic Container Registry)** - a place to store your container images. I push an image to ECR, ECS or Fargate pull it and run it. 
+
+**AWS X-RAY** - service that lets you trace requests through your system to find errors and bottlenecks. 
+
+**AWS Step Functions** = a service that orchestrates workflows by running services like AWS Lambda and Amazon ECS tasks in a defined sequence with logic (order, retries, branching). 
+
+**S3 (Simple Storage Service)** – object storage where you store files (images, backups, logs). Super durable. Basically a cloud “hard drive”.
+
+**EBS (Elastic Block Store)** – a disk attached to EC2 instances. Like a real hard drive for your server.
+
+**EFS (Elastic File System)** – shared file storage that multiple EC2 instances can use at the same time.
+
+**VPC (Virtual Private Cloud)** – your own private network inside AWS. You control IPs, subnets, routing.
+
+**Subnet** – a smaller network inside your VPC. Public = internet access, Private = no direct internet.
+
+**Internet Gateway** – lets resources in your VPC talk to the internet.
+
+**NAT Gateway** – lets private resources go OUT to the internet (for updates), but blocks inbound traffic.
+
+**Security Group** – firewall for instances. Controls what traffic can go in/out. (stateful)
+
+**NACL (Network ACL)** – another firewall but at subnet level. More strict, stateless.
+
+**IAM (Identity and Access Management)** – controls who can do what in AWS (users, roles, permissions).
+
+**IAM Role** – a temporary permission you give to services (like EC2 accessing S3).
+
+**CloudWatch** – monitoring service. Tracks metrics, logs, and can trigger alarms.
+
+**CloudTrail** – logs who did what in your AWS account (audit/history).
+
+**ELB (Elastic Load Balancer)** – spreads traffic across multiple servers so nothing crashes.
+
+**ALB (Application Load Balancer)** – smarter load balancer (routes based on URL, headers).
+
+**Route 53** – DNS service. Turns domain names into IP addresses.
+
+**CloudFront** – CDN. Caches your content worldwide so users get it faster.
+
+**API Gateway** – service to create and manage APIs. Often used with Lambda.
+
+**DynamoDB** – NoSQL database. Fast, scalable, serverless.
+
+**Aurora** – high-performance database (compatible with MySQL/PostgreSQL).
+
+**SNS (Simple Notification Service)** – sends messages (email, SMS, alerts).
+
+**SQS (Simple Queue Service)** – message queue. Decouples systems so they don’t depend on each other directly.
+
+**Kinesis** – handles real-time streaming data (logs, analytics).
+
+**Glue** – ETL service. Moves and transforms data between systems.
+
+**Athena** – lets you run SQL queries directly on S3 data.
+
+**Secrets Manager** – stores sensitive data (passwords, API keys) securely.
+
+**Parameter Store (SSM)** – stores config values and secrets (simpler than Secrets Manager).
+
+**Systems Manager (SSM)** – manages EC2 instances (patching, remote commands, automation).
+
+**CloudFormation** – infrastructure as code. You define resources in a template and AWS builds them.
+
+**AWS Organizations** – manage multiple AWS accounts under one structure.
+
+**Billing / Cost Explorer** – tracks and analyzes your AWS spending.
+
+**AWS Shield** – protects your app from DDoS attacks. Shield Standard is free and on by default. Shield Advanced is paid and gets you a 24/7 response team + cost protection if an attack spikes your bill.
+
+**AWS WAF** – a firewall for web traffic. Blocks bad HTTP requests based on rules you define (SQL injection, bad IPs, XSS). Sits in front of CloudFront, ALB, or API Gateway.
+
+**Amazon GuardDuty** – always-on threat detector. Uses ML to sniff through your CloudTrail, VPC, and DNS logs looking for suspicious behavior. No agents, no setup headache.
+
+**Amazon Inspector** – scans your EC2 instances and container images for known vulnerabilities (CVEs). GuardDuty detects active threats; Inspector finds weaknesses before attackers do.
+
+**Amazon Macie** – watches your S3 buckets for sensitive data like credit card numbers or personal info. Uses ML to find what you didn't know was exposed.
+
+**AWS KMS (Key Management Service)** – manages encryption keys. When you encrypt anything in AWS (S3, RDS, EBS), KMS is handling the keys behind the scenes.
+
+**AWS Certificate Manager (ACM)** – gives you free SSL/TLS certificates for your domains and auto-renews them. Attach to ALB or CloudFront and get HTTPS for free with zero manual work.
+
+**AWS Config** – records configuration changes to your AWS resources over time. Tells you what changed, when, and whether it violated a rule. CloudTrail says who did it; Config says what it now looks like.
+
+**AWS Artifact** – a portal where you download AWS's compliance documents (SOC 2, ISO, PCI). If an auditor asks for proof AWS is compliant, this is where you go.
+
+**AWS Trusted Advisor** – scans your account and gives you advice on cost, performance, security, fault tolerance, and service limits. Some checks are free; full access requires Business or Enterprise support.
+
+**Shared Responsibility Model** – AWS secures the physical hardware and infrastructure. You secure everything you put on top of it: your data, your IAM config, your OS patches on EC2. Classic exam trap: who patches the EC2 operating system? You do.
+
+**On-Demand pricing** – pay by the second, no commitment. Most expensive but fully flexible. Good for unpredictable workloads.
+
+**Reserved Instances (RIs)** – commit to 1 or 3 years and get up to 72% off On-Demand. Standard RIs are cheapest; Convertible RIs let you swap instance types.
+
+**Savings Plans** – like RIs but more flexible. You commit to a $/hour spend for 1 or 3 years and the discount automatically applies to EC2, Lambda, and Fargate.
+
+**Spot Instances** – buy unused AWS capacity at up to 90% discount. AWS can take it back with 2 minutes notice. Only use for workloads that can handle interruption (batch jobs, rendering, etc.).
+
+**Dedicated Hosts** – a physical server reserved entirely for you. Used for strict compliance requirements or software that requires Bring Your Own License (BYOL). Most expensive option.
+
+**Free Tier** – three types: always-free (e.g. 1M Lambda requests/month, 25GB DynamoDB), 12-month free (e.g. 750hrs EC2 t2.micro), and short-term trials.
+
+**TCO Calculator** – estimates how much you'd save by moving from on-premises to AWS. Used to build the business case before migrating. Pre-sales tool.
+
+**AWS Pricing Calculator** – estimates your future monthly AWS bill for a planned architecture. Use before you build to avoid surprises.
+
+**Consolidated Billing** – an AWS Organizations feature that merges bills from multiple accounts into one. All accounts share volume discounts together. One bill, cheaper at scale.
+
+**AWS Support Plans** – Basic (free, no tech support), Developer ($29/mo, business hours), Business ($100/mo, 1hr response for production outages, full Trusted Advisor), Enterprise On-Ramp, Enterprise (15min response, dedicated TAM).
+
+**TAM (Technical Account Manager)** – a dedicated AWS expert assigned to your account. Only available on Enterprise support plans. Helps you optimize architecture and costs proactively.
+
+**AWS Health Dashboard** – two parts: Service Health shows AWS-wide outages; Your Account Health shows issues affecting your specific resources. The second one is the one that matters for you.
+
+**AWS IQ** – a marketplace to hire AWS-certified freelancers for project work. Need someone to help build something fast? AWS IQ connects you to certified experts.
+
+**AWS Well-Architected Framework** – six pillars every good AWS architecture should follow: Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, Sustainability. Know all six.
+
+**Well-Architected Tool** – free tool that lets you review your own architecture against the six pillars and get improvement recommendations. Self-assessment.
+
+**AWS Cloud Adoption Framework (CAF)** – a guide for planning a cloud migration. Six perspectives: Business, People, Governance, Platform, Security, Operations. Think of it as the people and process side of moving to cloud, not the technical design.
+
+**High Availability (HA)** – designing your system to minimize downtime using redundancy, multiple AZs, and failover. HA doesn't mean zero downtime — it means reduced risk of it.
+
+**Fault Tolerance** – system keeps running even when parts fail, with zero impact to users. Stronger guarantee than HA.
+
+**Disaster Recovery (DR) strategies** – four options, ordered cheapest/slowest to most expensive/fastest: Backup & Restore → Pilot Light → Warm Standby → Multi-Site Active/Active. Know the tradeoff: cost vs. how fast you recover.
+
+**RTO / RPO** – RTO = how long it takes to recover (max acceptable downtime). RPO = how much data you can afford to lose (max age of data at recovery). Lower both = more expensive solution.
+
+**AWS Regions, AZs, Edge Locations** – Regions are geographic areas. AZs are isolated data centers within a region. Edge Locations are where CloudFront caches content globally. Region > AZ > Edge Location.
+
+**AWS Local Zones** – mini AWS regions placed near dense population centers for ultra-low latency. Think gaming or media rendering close to a major city.
+
+**AWS Outposts** – AWS ships you a rack of actual AWS hardware you install in your own data center. You get AWS services on-premises for data residency or latency reasons.
+
+**AWS Wavelength** – embeds AWS compute inside 5G telecom networks for single-digit millisecond latency. Used for mobile edge apps.
+
+**AWS Database Migration Service (DMS)** – migrates your database to AWS with minimal downtime. Works for same-engine (Oracle to Oracle) or different engines (Oracle to Aurora). Keeps source running while copying.
+
+**AWS Schema Conversion Tool (SCT)** – converts the database schema when switching engines (e.g. Oracle to PostgreSQL). Use SCT to convert the structure, then DMS to move the data.
+
+**AWS DataSync** – automates ongoing or scheduled data transfers from on-premises to S3, EFS, or FSx over the internet or Direct Connect.
+
+**AWS Snowball / Snowball Edge** – AWS physically ships you a box. You load your data on it and ship it back. For when uploading petabytes over the internet would take forever. Snowball Edge also has compute so you can process data locally.
+
+**AWS Snowmobile** – a literal shipping container on a truck for exabyte-scale migrations (100PB+). Yes, an actual truck.
+
+**AWS Application Migration Service (MGN)** – lift-and-shift tool. Continuously replicates your on-premises servers to AWS and lets you cut over with minimal downtime.
+
+**AWS Migration Hub** – central dashboard to track the status of all your migrations across tools and accounts. Doesn't do the migration itself; just shows you where everything is.
+
+**Amazon SageMaker** – the main AWS platform for building, training, and deploying ML models. Used by data scientists who actually know what they're doing.
+
+**Amazon Rekognition** – pre-trained image and video analysis. Face detection, object recognition, content moderation, reading text in images. No ML knowledge needed.
+
+**Amazon Comprehend** – reads text and understands it. Sentiment analysis, entity detection, key phrases, language detection.
+
+**Amazon Translate** – translates text between 75+ languages. Straightforward.
+
+**Amazon Polly** – converts text to speech. Gives you a voice for your app.
+
+**Amazon Transcribe** – converts audio/speech to text. Opposite of Polly.
+
+**Amazon Lex** – builds conversational chatbots (the same engine as Alexa). Understands intent from text or voice.
+
+**Amazon Textract** – extracts text and structured data from scanned documents, PDFs, and forms. Smarter than basic OCR because it understands tables and form fields.
+
+**Amazon QuickSight** – serverless BI dashboards and visualizations. AWS's answer to Tableau or Power BI.
+
+**Amazon EMR** – managed big data processing using Spark, Hadoop, Hive. For crunching massive datasets.
+
+**AWS CodeBuild** – managed build service. Compiles your code, runs tests, produces artifacts. No build server to manage.
+
+**AWS CodeDeploy** – automates deployments to EC2, Lambda, or on-premises. Handles rolling and blue/green deployment strategies.
+
+**AWS CodePipeline** – orchestrates your entire CI/CD pipeline end to end. Connects source → build → test → deploy in one automated flow.
+
+**AWS CDK (Cloud Development Kit)** – define your infrastructure using real code (Python, TypeScript, Java, etc.) instead of YAML. Generates CloudFormation under the hood.
+
+**Amazon EventBridge** – serverless event bus. Routes events between AWS services, your own apps, and SaaS tools based on rules. Great for decoupled, event-driven architectures.
+
+**AWS Amplify** – fastest way to deploy a full-stack web or mobile app on AWS. Handles frontend hosting, backend APIs, auth, and CI/CD together.
+
+**AWS Direct Connect** – a dedicated private network connection from your data center straight to AWS. More reliable and consistent than a regular VPN. More expensive but no internet in the middle.
+
+**AWS Site-to-Site VPN** – an encrypted tunnel over the public internet connecting your network to your VPC. Cheaper than Direct Connect but dependent on internet quality.
+
+**AWS Transit Gateway** – a central hub that connects multiple VPCs and on-premises networks together. Without it, you'd need a tangled web of individual peering connections.
+
+**VPC Peering** – a private connection between two VPCs. Not transitive: if A is peered with B and B is peered with C, A still can't talk to C without its own peering.
+
+**AWS PrivateLink / VPC Endpoints** – lets you access AWS services like S3 or DynamoDB from inside your VPC without traffic ever touching the public internet.
+
+**AWS Global Accelerator** – routes your users through AWS's private global network to reach your app faster and more reliably. Different from CloudFront: Global Accelerator speeds up routing; CloudFront caches content.
+

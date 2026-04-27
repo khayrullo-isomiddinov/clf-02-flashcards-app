@@ -1,0 +1,12 @@
+# Source material (not needed in image)
+content.txt
+
+# Git
+.git
+.gitignore
+
+# Editor / OS noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo

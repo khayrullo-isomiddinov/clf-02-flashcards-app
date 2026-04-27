@@ -422,6 +422,22 @@
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 18px 20px;
+    font-size: .75rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity .15s;
+  }
+  footer a:hover { opacity: .75; }
+
   /* ── Test Prep button badge ── */
   .btn-badge-wrap { position: relative; }
   .btn-badge {
@@ -767,6 +783,12 @@
 </main>
 
 <div id="toast"></div>
+
+<footer>
+  Made by <a href="https://khayrullo.com" target="_blank" rel="noopener">khayrullo.com</a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/khayrullo-isomiddinov" target="_blank" rel="noopener">github.com/khayrullo-isomiddinov</a>
+</footer>
 
 <!-- ── Test Prep Modal ── -->
 <div class="modal-overlay" id="testPrepModal">
